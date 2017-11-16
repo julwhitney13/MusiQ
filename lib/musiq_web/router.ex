@@ -15,10 +15,15 @@ defmodule MusiqWeb.Router do
 
   scope "/", MusiqWeb do
     pipe_through :browser # Use the default browser stack
-
+    resources "/users", UserController
+    resources "/groups", GroupController
     get "/", PageController, :index
   end
-
+  
+  scope "/api/vi", MusiqWeb do
+    pipe_through :api
+    resources "/songs", SongController, except: [:new, :edit]
+  end
   # Other scopes may use custom stacks.
   # scope "/api", MusiqWeb do
   #   pipe_through :api

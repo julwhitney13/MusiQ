@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :musiq, Musiq.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "musiq",
+  password: "eeDai1eiPh",
   database: "musiq_dev",
   hostname: "localhost",
   pool_size: 10
