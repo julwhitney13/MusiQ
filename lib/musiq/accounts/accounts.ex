@@ -1,3 +1,4 @@
+require IEx
 defmodule Musiq.Accounts do
   @moduledoc """
   The Accounts context.
@@ -53,6 +54,21 @@ defmodule Musiq.Accounts do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
+  end
+
+
+  def get_or_create_user(profile) do
+    user = Repo.get_by(User, spotify_id: profile.id)
+    if user do
+      user
+      |> Repo.preload([:created_groups, :following_groups])
+    else
+      user_params = %{ spotify_id: profile.id,
+                       username: profile.display_name,
+                       email: profile.email}
+
+      create_user(user_params)
+    end
   end
 
   @doc """

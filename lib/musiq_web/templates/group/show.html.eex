@@ -8,11 +8,6 @@
   </li>
 
   <li>
-    <strong>Group:</strong>
-    <%= @group.group_id %>
-  </li>
-
-  <li>
     <strong>Description:</strong>
     <%= @group.description %>
   </li>

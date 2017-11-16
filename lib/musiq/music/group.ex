@@ -6,10 +6,9 @@ defmodule Musiq.Music.Group do
 
   schema "groups" do
     field :description, :string
-    field :group_id, :integer
     field :name, :string
     belongs_to :creator, Musiq.Accounts.User, foreign_key: :creator_id
-    has_many :listeners, Musiq.Accounts.User, foreign_key: :listener_id
+    many_to_many :listener, Musiq.Accounts.User, join_through: Musiq.UserGroup
     has_many :songs, Musiq.Music.Song
 
     timestamps()
@@ -18,7 +17,7 @@ defmodule Musiq.Music.Group do
   @doc false
   def changeset(%Group{} = group, attrs) do
     group
-    |> cast(attrs, [:name, :group_id, :description, :creator_id])
+    |> cast(attrs, [:name, :description, :creator_id, :listener_id])
     |> validate_required([:name, :group_id, :description])
   end
 end

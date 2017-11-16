@@ -1,5 +1,6 @@
 defmodule MusiqWeb.Router do
   use MusiqWeb, :router
+  import MusiqWeb.Plugs
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -7,6 +8,7 @@ defmodule MusiqWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_user
   end
 
   pipeline :api do
@@ -17,9 +19,11 @@ defmodule MusiqWeb.Router do
     pipe_through :browser # Use the default browser stack
     resources "/users", UserController
     resources "/groups", GroupController
-    get "/", PageController, :index
+    get "/", AuthorizationController, :authorize
+    get "/authenticate", AuthenticationController, :authenticate
+    delete "/authentication", AuthenticationController, :logout
   end
-  
+
   scope "/api/vi", MusiqWeb do
     pipe_through :api
     resources "/songs", SongController, except: [:new, :edit]

@@ -24,11 +24,6 @@ defmodule Musiq.MusicTest do
       assert Music.list_groups() == [group]
     end
 
-    test "get_group!/1 returns the group with given id" do
-      group = group_fixture()
-      assert Music.get_group!(group.id) == group
-    end
-
     test "create_group/1 with valid data creates a group" do
       assert {:ok, %Group{} = group} = Music.create_group(@valid_attrs)
       assert group.description == "some description"
