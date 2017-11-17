@@ -71,6 +71,14 @@ defmodule Musiq.Accounts do
     end
   end
 
+  def associate_group(user_id, group) do
+    user = get_user!(user_id)
+    |> Repo.preload([:following_groups])
+    |> Ecto.Changeset.change()
+    |> Ecto.Changeset.put_assoc(:following_groups, group)
+    |> Repo.update!
+  end
+
   @doc """
   Updates a user.
 

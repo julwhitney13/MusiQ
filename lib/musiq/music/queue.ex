@@ -1,15 +1,23 @@
 defmodule Musiq.Music.Queue do
   alias Musiq.Repo
+  import Ecto.Query, only: [from: 2]
 
   def get(groupID) do
-    group = get_group!(groupID)
+    group = Musiq.Music.get_group!(groupID)
     songs = Repo.preload group, [songs: from(s in Song, order_by: s.order)]
     songs
   end
 
   def update(groupID, data) do
-    group = get_group!(groupID)
-    Repo.Preload group, [songs:] |> Repo.delete_all
+    group = Musiq.Music.get_group!(groupID)
+    Repo.preload group, [:songs] |> Repo.delete_all
+    data
+    |> Enum.with_index
+    |> Enum.each(fn({song, index}) ->
+      object = %{order: index, spotify_id: song.id,
+      title: song.title, artist: song.artist, group_id: groupID}
+      Musiq.Music.create_song(object)
+    end)
   end
 
 end

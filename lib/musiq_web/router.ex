@@ -26,7 +26,7 @@ defmodule MusiqWeb.Router do
 
   scope "/api/vi", MusiqWeb do
     pipe_through :api
-    resources "/songs", SongController, except: [:new, :edit]
+    get "/songs", SongController, :search
   end
   # Other scopes may use custom stacks.
   # scope "/api", MusiqWeb do

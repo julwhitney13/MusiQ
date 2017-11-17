@@ -6,4 +6,5 @@ defmodule Musiq.UserGroup do
     belongs_to :group, Musiq.Music.Group
     timestamps()
   end
+
 end

@@ -15,6 +15,8 @@ defmodule MusiqWeb.GroupController do
   end
 
   def create(conn, %{"group" => group_params}) do
+    id = get_session(conn, :user_id)
+    group_params = Map.put(group_params, :creator_id, id)
     case Music.create_group(group_params) do
       {:ok, group} ->
         conn
@@ -27,6 +29,8 @@ defmodule MusiqWeb.GroupController do
 
   def show(conn, %{"id" => id}) do
     group = Music.get_group!(id)
+    user_id = get_session(conn, :user_id)
+    Musiq.Accounts.associate_group(user_id, group)
     conn
     |> assign(:group_id, id)
     |> render("show.html", group: group)
