@@ -23,10 +23,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import SortableSimple from './components/index';
+import navbarInstance from './components/Navbar';
 
 function ready(channel, state) {
   let group_show = document.getElementById('group show');
+  let navbar = document.getElementById('navbar');
   ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
+  ReactDom.render(<navbarInstance />, navbar);
 }
 
 function start() {

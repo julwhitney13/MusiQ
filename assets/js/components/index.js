@@ -7,7 +7,7 @@ export default class SortableSimple extends Component {
         super(props)
         this.state = this.props.state
     }
-    
+
     render() {
         return (
             <div>
