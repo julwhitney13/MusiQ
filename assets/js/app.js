@@ -31,12 +31,14 @@ import MusiqNavbar from './components/Navbar';
 
 function ready(channel, state) {
   let group_show = document.getElementById('group show');
-  let navbar = document.getElementById('navbar');
   ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
-  ReactDOM.render(<MusiqNavbar />, navbar);
 }
 
 function start() {
+
+  let navbar = document.getElementById('navbar');
+  ReactDOM.render(<MusiqNavbar />, navbar);
+
   if ($('body').data('page') != "GroupView/show"){
     return;
   }
