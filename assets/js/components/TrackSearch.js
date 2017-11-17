@@ -9,9 +9,9 @@ export default class TrackSearch extends Component {
     render() {
         return (
             <form>
+                <ControlLabel>Track Search</ControlLabel>
                 <FormGroup>
                   <InputGroup>
-                    <ControlLabel>Track Search</ControlLabel>
                     <FormControl type="text" label="track" placeholder="Enter a song name..."/>
                     <InputGroup.Addon>
                       <Glyphicon glyph="music" />
