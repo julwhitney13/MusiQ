@@ -36,20 +36,14 @@ function ready(channel, state) {
   ReactDOM.render(<MusiqNavbar />, navbar);
 }
 
-// function start() {
-//     let group = socket.channel("group:" + window.group_id, {});
-//     group.join()
-//         .receive("ok", state0 => {
-//             console.log("Joined successfully", state0);
-//             ready(group, state0);
-//         })
-//         .receive("error", resp => {console.log("Unable to join", resp);});
-// }
-
 function start() {
-    let navbar = document.getElementById('navbar');
-    // ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
-    ReactDOM.render(<MusiqNavbar />, navbar);
+    let group = socket.channel("group:" + window.group_id, {});
+    group.join()
+        .receive("ok", state0 => {
+            console.log("Joined successfully", state0);
+            ready(group, state0);
+        })
+        .receive("error", resp => {console.log("Unable to join", resp);});
 }
 
 $(start);
