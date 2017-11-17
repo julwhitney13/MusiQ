@@ -28,15 +28,23 @@ import ReactDOM from 'react-dom';
 
 import SortableSimple from './components/index';
 import MusiqNavbar from './components/Navbar';
+import TrackSearch from './components/TrackSearch';
 
 function ready(channel, state) {
-  let group_show = document.getElementById('group show');
-  let navbar = document.getElementById('navbar');
+  let group_show = document.getElementById('groupshow');
+  let tracksearchbar = document.getElementById('tracksearchbar');
   ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
-  ReactDOM.render(<MusiqNavbar />, navbar);
+  ReactDOM.render(<TrackSearch />, tracksearchbar);
 }
 
 function start() {
+
+  let navbar = document.getElementById('navbar');
+  ReactDOM.render(<MusiqNavbar />, navbar);
+
+  if ($('body').data('page') != "GroupView/show"){
+    return;
+  }
     let group = socket.channel("group:" + window.group_id, {});
     group.join()
         .receive("ok", state0 => {
