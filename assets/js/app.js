@@ -11,7 +11,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import "phoenix_html"
+//import "phoenix_html"
 
 // Import local files
 //
@@ -19,28 +19,37 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+// import './index.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap-theme.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import SortableSimple from './components/index';
-import navbarInstance from './components/Navbar';
+import MusiqNavbar from './components/Navbar';
 
 function ready(channel, state) {
   let group_show = document.getElementById('group show');
   let navbar = document.getElementById('navbar');
   ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
-  ReactDom.render(<navbarInstance />, navbar);
+  ReactDOM.render(<MusiqNavbar />, navbar);
 }
+
+// function start() {
+//     let group = socket.channel("group:" + window.group_id, {});
+//     group.join()
+//         .receive("ok", state0 => {
+//             console.log("Joined successfully", state0);
+//             ready(group, state0);
+//         })
+//         .receive("error", resp => {console.log("Unable to join", resp);});
+// }
 
 function start() {
-    let group = socket.channel("group:" + window.group_id, {});
-    group.join()
-        .receive("ok", state0 => {
-            console.log("Joined successfully", state0);
-            ready(group, state0);
-        })
-        .receive("error", resp => {console.log("Unable to join", resp);});
+    let navbar = document.getElementById('navbar');
+    // ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
+    ReactDOM.render(<MusiqNavbar />, navbar);
 }
-
 
 $(start);

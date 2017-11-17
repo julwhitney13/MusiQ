@@ -12,15 +12,11 @@
   </head>
 
   <body>
+      <div id="navbar">
+          <p>Navbar Error</p>
+      </div>
     <div class="container">
       <header class="header">
-          <div id="navbar">
-          </div>
-        <!-- <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav> -->
         <span class="logo"></span>
       </header>
 
