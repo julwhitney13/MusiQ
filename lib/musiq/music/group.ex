@@ -17,7 +17,7 @@ defmodule Musiq.Music.Group do
   @doc false
   def changeset(%Group{} = group, attrs) do
     group
-    |> cast(attrs, [:name, :description, :creator_id, :listener_id])
-    |> validate_required([:name, :group_id, :description])
+    |> cast(attrs, [:name, :description, :creator_id])
+    |> validate_required([:name, :description])
   end
 end
