@@ -11,12 +11,17 @@ export default class TrackSearch extends Component {
             <form>
                 <FormGroup>
                   <InputGroup>
-                    <FormControl type="text" label="Song" placeholder="Enter a song name..."/>
+                    <ControlLabel>Track Search</ControlLabel>
+                    <FormControl type="text" label="track" placeholder="Enter a song name..."/>
                     <InputGroup.Addon>
                       <Glyphicon glyph="music" />
                     </InputGroup.Addon>
                   </InputGroup>
                 </FormGroup>
+
+                <Button type="submit">
+                  Search
+                </Button>
             </form>
           )
       }
