@@ -7,6 +7,7 @@ defmodule MusiqWeb.AuthenticationController do
       {:ok, conn} ->
         {:ok, profile} = Spotify.Profile.me(conn)
         user = Musiq.Accounts.get_or_create_user(profile)
+        IEx.pry
         conn
         |> put_session(:user_id, user.id)
         |> put_flash(:info, "Logged in as #{user.username}")
