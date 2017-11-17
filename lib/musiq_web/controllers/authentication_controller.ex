@@ -8,8 +8,8 @@ defmodule MusiqWeb.AuthenticationController do
         {:ok, profile} = Spotify.Profile.me(conn)
         user = Musiq.Accounts.get_or_create_user(profile)
         conn
-        |> put_session(:user_ud, user.spotify_id)
-        |> put_flash(info, "Logged in as #{user.username}")
+        |> put_session(:user_id, user.id)
+        |> put_flash(:info, "Logged in as #{user.username}")
         |> redirect(to: "/groups")
         {:error, reason, conn} ->
           redirect conn, to: "/authorize"

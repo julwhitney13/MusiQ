@@ -27,7 +27,9 @@ defmodule MusiqWeb.GroupController do
 
   def show(conn, %{"id" => id}) do
     group = Music.get_group!(id)
-    render(conn, "show.html", group: group)
+    conn
+    |> assign(:group_id, id)
+    |> render("show.html", group: group)
   end
 
   def edit(conn, %{"id" => id}) do

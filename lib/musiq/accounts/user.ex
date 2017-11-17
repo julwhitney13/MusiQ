@@ -7,7 +7,7 @@ defmodule Musiq.Accounts.User do
   schema "users" do
     field :admin?, :boolean, default: false
     field :email, :string
-    field :spotify_id, :integer
+    field :spotify_id, :string
     field :username, :string
     has_many :created_groups, Musiq.Music.Group, foreign_key: :creator_id
     many_to_many :following_groups, Musiq.Music.Group, join_through: Musiq.UserGroup

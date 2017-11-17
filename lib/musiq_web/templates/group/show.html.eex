@@ -14,5 +14,11 @@
 
 </ul>
 
+<%= if @group_id do %>
+<script>
+  window.group_id = "<%= @group_id %>"
+  </script>
+  <% end %>
+
 <span><%= link "Edit", to: group_path(@conn, :edit, @group) %></span>
 <span><%= link "Back", to: group_path(@conn, :index) %></span>
