@@ -38,6 +38,20 @@ defmodule Musiq.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_user(id) do
+      user = Repo.get!(User, id)
+      |> Repo.preload([:created_groups, :following_groups])
+  end
+
+  def get_user_created_groups(id) do
+      user = get_user(id)
+      user.created_groups
+  end
+
+  def get_user_following_groups(id) do
+      user = get_user(id)
+      user.following_groups
+  end
   @doc """
   Creates a user.
 
