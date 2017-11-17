@@ -37,6 +37,9 @@ function ready(channel, state) {
 }
 
 function start() {
+  if ($('body').data('page') != "GroupView/show"){
+    return;
+  }
     let group = socket.channel("group:" + window.group_id, {});
     group.join()
         .receive("ok", state0 => {
