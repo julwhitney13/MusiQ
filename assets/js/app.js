@@ -18,4 +18,26 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
-import socket from "./socket"
+// import socket from "./socket"
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import SortableSimple from './components/index';
+
+function ready(channel, state) {
+  let group_show = document.getElementById('group show');
+  ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
+}
+
+function start() {
+    let group = socket.channel("group:" + window.group_name, {});
+    group.join()
+        .receive("ok", state0 => {
+            console.log("Joined successfully", state0);
+            ready(group, state0)l
+        })
+        .receive("error", resp => {console.log("Unable to join", resp);});
+}
+
+
+$(start);
