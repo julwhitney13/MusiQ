@@ -30,11 +30,11 @@ function ready(channel, state) {
 }
 
 function start() {
-    let group = socket.channel("group:" + window.group_name, {});
+    let group = socket.channel("group:" + window.group_id, {});
     group.join()
         .receive("ok", state0 => {
             console.log("Joined successfully", state0);
-            ready(group, state0)l
+            ready(group, state0);
         })
         .receive("error", resp => {console.log("Unable to join", resp);});
 }
