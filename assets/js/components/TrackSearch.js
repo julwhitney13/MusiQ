@@ -29,13 +29,13 @@ export default class TrackSearch extends Component {
     submitForm(e) {
         e.preventDefault()
         var params = []
-        if (songsearch) {
+        if (this.state.songsearch) {
             params.push({"q": this.state.songquery, "type": "track"})
         }
-        if (artistsearch) {
+        if (this.state.artistsearch) {
             params.push({"q": this.state.artistquery, "type": "artist"})
         }
-        if (albumquery) {
+        if (this.state.albumquery) {
             params.push({"q": this.state.albumquery, "type": "album"})
         }
 
