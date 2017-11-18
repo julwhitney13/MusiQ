@@ -8,7 +8,7 @@ export default class TrackSearch extends Component {
 
     render() {
         return (
-            <h3>Choose fields and words to search by<h3>
+            <h3>Choose fields and words to search by</h3>
             <form>
                 <ControlLabel>Song</ControlLabel>
                 <FormGroup>
