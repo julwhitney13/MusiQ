@@ -8,17 +8,35 @@ export default class TrackSearch extends Component {
 
     render() {
         return (
+            <h3>Choose fields and words to search by<h3>
             <form>
-                <ControlLabel>Track Search</ControlLabel>
+                <ControlLabel>Song</ControlLabel>
                 <FormGroup>
                   <InputGroup>
-                    <FormControl type="text" label="track" placeholder="Enter a song name..."/>
                     <InputGroup.Addon>
-                      <Glyphicon glyph="music" />
+                      <input type="checkbox" aria-label="songsearch" />
                     </InputGroup.Addon>
+                    <FormControl type="text" label="track" placeholder="Enter a song name..."/>
                   </InputGroup>
                 </FormGroup>
-
+                <ControlLabel>Artist</ControlLabel>
+                <FormGroup>
+                  <InputGroup>
+                    <InputGroup.Addon>
+                      <input type="checkbox" aria-label="artistsearch" />
+                    </InputGroup.Addon>
+                    <FormControl type="text" label="artist" placeholder="Enter an artist..."/>
+                  </InputGroup>
+                </FormGroup>
+                <ControlLabel>Album</ControlLabel>
+                <FormGroup>
+                  <InputGroup>
+                    <InputGroup.Addon>
+                      <input type="checkbox" aria-label="songsearch" />
+                    </InputGroup.Addon>
+                    <FormControl type="text" label="album" placeholder="Enter an album..."/>
+                  </InputGroup>
+                </FormGroup>
                 <Button type="submit">
                   Search
                 </Button>
