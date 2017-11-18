@@ -5,6 +5,8 @@ import axios from 'axios';
 export default class TrackSearch extends Component {
     constructor(props) {
         super(props)
+        this.submitForm = this.submitForm.bind(this)
+        this.handleChange = this.handleChange.bind(this)
         this.state = {
           songsearch: false,
           songquery: '',
@@ -14,6 +16,16 @@ export default class TrackSearch extends Component {
           albumquery: '',
         }
     }
+
+    handleChange(e) {
+      const target = e.target
+      const name = target.name
+      const value = target.type === 'checkbox' ?
+        target.checked : target.value
+
+        this.setState(state => ({[name] : value}))
+    }
+
     submitForm(e) {
         e.preventDefault()
         var params = []
@@ -40,27 +52,27 @@ export default class TrackSearch extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon>
-                      <input type="checkbox" name="songsearch" checked={this.state.songsearch} />
+                      <input type="checkbox" name="songsearch" checked={this.state.songsearch} onChange={this.handleChange} />
                     </InputGroup.Addon>
-                    <FormControl type="text" name="songquery" value={this.state.songquery}  placeholder="Enter a song name..."/>
+                    <FormControl type="text" name="songquery" value={this.state.songquery} placeholder="Enter a song name..." onChange={this.handleChange} />
                   </InputGroup>
                 </FormGroup>
                 <ControlLabel>Search by artist</ControlLabel>
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon>
-                      <input type="checkbox" name="artistsearch" checked={this.state.artistsearch} />
+                      <input type="checkbox" name="artistsearch" checked={this.state.artistsearch} onChange={this.handleChange} />
                     </InputGroup.Addon>
-                    <FormControl type="text" name="artistquery" value={this.state.artistquery} placeholder="Enter an artist..."/>
+                    <FormControl type="text" name="artistquery" value={this.state.artistquery} placeholder="Enter an artist..." onChange={this.handleChange} />
                   </InputGroup>
                 </FormGroup>
                 <ControlLabel>Search by album</ControlLabel>
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon>
-                      <input type="checkbox" name="albumsearch" checked={this.state.albumsearch} />
+                      <input type="checkbox" name="albumsearch" checked={this.state.albumsearch} onChange={this.handleChange} />
                     </InputGroup.Addon>
-                    <FormControl type="text" name="albumquery" value={this.state.albumquery}  placeholder="Enter an album..."/>
+                    <FormControl type="text" name="albumquery" value={this.state.albumquery}  placeholder="Enter an album..." onChange={this.handleChange} />
                   </InputGroup>
                 </FormGroup>
                 <Button type="submit">
