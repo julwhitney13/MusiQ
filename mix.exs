@@ -41,7 +41,9 @@ defmodule Musiq.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:spotify_ex, git: "https://github.com/lohikansun/spotify_ex.git"}
+      {:spotify_ex, git: "https://github.com/lohikansun/spotify_ex.git"},
+      {:poison, "~> 3.1"},
+      {:httpoison, "~> 0.13.0"}
     ]
   end
 

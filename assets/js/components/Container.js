@@ -14,41 +14,10 @@ export default class Container extends Component {
     constructor(props) {
         super(props)
         this.moveCard = this.moveCard.bind(this)
-        this.state = {
-            cards: [
-                {
-                    id: 1,
-                    title: 'Closer',
-                    artist: 'Tegan & Sara',
-                },
-                {
-                    id: 2,
-                    title: 'Paris',
-                    artist: 'Magic Man'
-                },
-                {
-                    id: 3,
-                    title: 'The Gambler',
-                    artist: 'fun.'
-                },
-                {
-                    id: 4,
-                    title: 'Blood Red Blood',
-                    artist: 'Voxtrot'
-                },
-                {
-                    id: 5,
-                    title: 'If So',
-                    artist: 'Atlas Genius',
-                },
-                {
-                    id: 6,
-                    title: 'R U Mine?',
-                    artist: 'Arctic Monkeys',
-                },
-            ],
-        }
+        this.state = this.props.state
+
     }
+
 
     moveCard(dragIndex, hoverIndex) {
         const { cards } = this.state
@@ -57,7 +26,7 @@ export default class Container extends Component {
         this.props.channel.push("cards", cards)
             .receive("ok", state =>
                 this.setState(
-                    update(this.state, {
+                    update(state, {
                         cards: {
                             $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
                         },

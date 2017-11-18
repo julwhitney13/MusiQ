@@ -24,9 +24,9 @@ defmodule MusiqWeb.Router do
     delete "/authentication", AuthenticationController, :logout
   end
 
-  scope "/api/vi", MusiqWeb do
+  scope "/api/v1", MusiqWeb do
     pipe_through :api
-    get "/songs", SongController, :search
+    post "/search", SongController, :search
     get "/play", SongController, :play
     get "/pause", SongController, :pause
   end
