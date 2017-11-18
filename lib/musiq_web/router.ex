@@ -17,7 +17,7 @@ defmodule MusiqWeb.Router do
 
   scope "/", MusiqWeb do
     pipe_through :browser # Use the default browser stack
-    resources "/users", UserController
+    resources "/users", UserController, except: [:delete]
     resources "/groups", GroupController
     get "/", AuthorizationController, :authorize
     get "/authenticate", AuthenticationController, :authenticate

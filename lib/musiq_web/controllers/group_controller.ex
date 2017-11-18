@@ -18,6 +18,7 @@ defmodule MusiqWeb.GroupController do
   def create(conn, %{"group" => group_params}) do
     id = get_session(conn, :user_id)
     group_params = Map.put(group_params, "creator_id", id)
+    IEx.pry
     case Music.create_group(group_params) do
       {:ok, group} ->
         conn
@@ -62,6 +63,9 @@ defmodule MusiqWeb.GroupController do
 
   def delete(conn, %{"id" => id}) do
     group = Music.get_group!(id)
+    user_id = get_session(conn, :user_id)
+    Musiq.Accounts.delete_association(user_id, id)
+    IEx.pry
     {:ok, _group} = Music.delete_group(group)
 
     conn

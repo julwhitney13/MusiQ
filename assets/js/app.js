@@ -11,7 +11,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-//import "phoenix_html"
+import "phoenix_html"
 
 // Import local files
 //
@@ -28,10 +28,13 @@ import ReactDOM from 'react-dom';
 
 import SortableSimple from './components/index';
 import MusiqNavbar from './components/Navbar';
+import TrackSearch from './components/TrackSearch';
 
 function ready(channel, state) {
-  let group_show = document.getElementById('group show');
+  let group_show = document.getElementById('groupshow');
+  let tracksearchbar = document.getElementById('tracksearchbar');
   ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
+  ReactDOM.render(<TrackSearch />, tracksearchbar);
 }
 
 function start() {

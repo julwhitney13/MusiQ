@@ -1,3 +1,10 @@
+<div id="tracksearchbar">
+    <p>Add a song</p>
+</div>
+<div id="groupshow">
+    <p>Loading queue...</p>
+</div>
+
 <h2>Show Group</h2>
 
 <ul>

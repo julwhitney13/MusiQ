@@ -11,4 +11,18 @@ defmodule MusiqWeb.SongController do
     songs
   end
 
+  def search(conn, params) do
+    Spotify.Player.play(conn, params)
+    conn
+    |> put_flash(:info, "Music Played")
+    |> send_resp(:no_content, "")
+  end
+
+  def search(conn, params) do
+    Spotify.Player.pause(conn, params)
+    conn
+    |> put_flash(:info, "Music Played")
+    |> send_resp(:no_content, "")
+  end
+
 end
