@@ -8,7 +8,6 @@ export default class TrackSearch extends Component {
 
     render() {
         return (
-            <header>Choose fields and words to search by</header>
             <form>
                 <ControlLabel>Song</ControlLabel>
                 <FormGroup>
