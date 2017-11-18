@@ -39,7 +39,7 @@ export default class TrackSearch extends Component {
             params.push({"q": this.state.albumquery, "type": "album"})
         }
 
-        axios.get('/search', params)
+        axios.post('/api/v1/search', params)
             .then(res => { console.log(JSON.stringify(res))
         });
 

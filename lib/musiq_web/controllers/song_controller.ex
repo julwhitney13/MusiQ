@@ -1,3 +1,4 @@
+require IEx
 defmodule MusiqWeb.SongController do
   use MusiqWeb, :controller
 
@@ -7,8 +8,10 @@ defmodule MusiqWeb.SongController do
   action_fallback MusiqWeb.FallbackController
 
   def search(conn, params) do
-    songs = Spotify.Search.query(conn, params)
-    songs
+    {:ok, %{items: items}} = Spotify.Search.query(conn, List.first(params["_json"]))
+    IEx.pry
+    x = Poison.encode!(items) |> Poison.decode!
+    json conn, x
   end
 
 end
