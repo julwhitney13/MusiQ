@@ -16,6 +16,8 @@ export default class Container extends Component {
         this.moveCard = this.moveCard.bind(this)
         this.state = this.props.state
 
+    }
+
 
     moveCard(dragIndex, hoverIndex) {
         const { cards } = this.state
