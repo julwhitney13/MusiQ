@@ -4,6 +4,8 @@
     </div>
     <div class="row">
         <div class="col-md-6">
+          <span><%= link "Play", to: song_path(@conn, :play, %{}), class: "btn btn-default btn-xs" %></span>
+          <span><%= link "Pause", to: song_path(@conn, :pause, %{}), class: "btn btn-default btn-xs" %></span>
         <h3>Created Groups</h3>
         <%= for group <- Musiq.Accounts.get_user_created_groups(@current_user.id) do %>
             <table class="table">

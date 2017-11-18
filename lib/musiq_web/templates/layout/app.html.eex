@@ -11,14 +11,11 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body data-page="<%= page_name(@view_module, @view_template) %>">
+  <body  data-page="<%= page_name(@view_module, @view_template) %>">
       <div id="navbar">
           <p>Navbar Error</p>
       </div>
     <div class="container">
-      <header class="header">
-        <span class="logo"></span>
-      </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
