@@ -34,7 +34,6 @@ function ready(channel, state) {
   let group_show = document.getElementById('groupshow');
   // let tracksearchbar = document.getElementById('tracksearchbar');
   // console.log(state)
-  state = {cards:[]}
   ReactDOM.render(<SortableSimple state={state} channel={channel}/>, group_show);
   // ReactDOM.render(<TrackSearch />, tracksearchbar);
 }
