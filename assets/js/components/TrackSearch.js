@@ -41,7 +41,7 @@ export default class TrackSearch extends Component {
         }
 
         axios.post('/api/v1/search', params)
-            .then(res => {this.state.response = res})
+            .then(res => {this.state.response = JSON.parse(res)})
             .catch(er => {console.log(er)})
 
     }
@@ -88,6 +88,7 @@ export default class TrackSearch extends Component {
     const searchResults = (
             <Panel collapsible defaultExpanded header="Search results">
               <ListGroup fill>
+              console.log(this.state.response)
                 {this.state.response.map((track, i) => (
                     <ListGroupItem>
                     {track.name} - {track.artists[0].name}
