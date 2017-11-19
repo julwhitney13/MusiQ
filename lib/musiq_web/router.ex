@@ -27,10 +27,10 @@ defmodule MusiqWeb.Router do
   scope "/api/v1", MusiqWeb do
     pipe_through :api
     post "/search", SongController, :search
-    get "/play", SongController, :play
-    get "/first", SongController, :first
-    get "/pause", SongController, :pause
-    get "/next", SongController, :next
+    post "/play", SongController, :play
+    post "/first", SongController, :first
+    post "/pause", SongController, :pause
+    post "/next", SongController, :next
   end
   # Other scopes may use custom stacks.
   # scope "/api", MusiqWeb do
