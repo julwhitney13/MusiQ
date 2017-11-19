@@ -6,23 +6,27 @@ import TrackSearch from './TrackSearch'
 export default class SortableSimple extends Component {
     constructor(props) {
         super(props)
+        // console.log(props)
+        // console.log(this.props.state)
         this.state = this.props.state
+        // this.state = {"cards":[]}
     }
 
     render() {
         return (
             <div>
-                <row>
-                    <div style="col-md-8">
-                        <h1>
-                            Our Queue:
-                        </h1>
-                        <Container />
-                    </div>
-                    <div style="col-md-4">
-                        <TrackSearch />
-                    </div>
-                </row>
+                <div className="col-md-8">
+                    <h3>
+                        Our Queue:
+                    </h3>
+                    <Container state={this.state}/>
+                </div>
+                <div className="col-md-4">
+                    <h3>
+                        Add a Song:
+                    </h3>
+                    <TrackSearch />
+                </div>
             </div>
         )
     }
