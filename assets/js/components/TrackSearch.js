@@ -48,6 +48,7 @@ export default class TrackSearch extends Component {
         }
         this.props.state.cards.push(track_object)
         this.forceUpdate()
+        console.log(this.props.state)
     }
 
     render() {
