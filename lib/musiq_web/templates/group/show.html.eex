@@ -1,6 +1,6 @@
 <h3><%= @group.name %></h3>
 <p><%= @group.description %></p>
-<p>Created by @<%= @group.creator %></p>
+<p>Created by @<%= @group.creator.spotify_id %></p>
 
 <div id="groupshow">
     <p>Loading queue...</p>
