@@ -13,14 +13,18 @@ defmodule Musiq.Music.Queue do
   def update(groupID, songs) do
     group = Musiq.Music.get_group!(groupID)
     |> Repo.preload [:songs]
-    Repo.delete_all(group.songs)
+    query = from s in Musiq.Music.Song,
+            where: s.group_id == ^groupID
+    Repo.delete_all(query)
     change = Ecto.Changeset.change group, current_ms: 0
     Repo.update! change
-    songs
+    IEx.pry
+
+    songs["cards"]
     |> Enum.with_index
     |> Enum.each(fn({song, index}) ->
-      object = %{song_order: index, spotify_id: song.id,
-      title: song.title, artist: song.artist, group_id: groupID}
+      object = %{song_order: index, spotify_id: song["id"],
+      title: song["title"], artist: song["artist"], group_id: groupID}
       Musiq.Music.create_song(object)
     end)
   end
