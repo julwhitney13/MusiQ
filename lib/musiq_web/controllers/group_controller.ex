@@ -7,6 +7,8 @@ defmodule MusiqWeb.GroupController do
 
   def index(conn, _params) do
     groups = Music.list_groups()
+    IEx.pry
+    
     render(conn, "index.html", groups: groups)
   end
 
@@ -31,7 +33,6 @@ defmodule MusiqWeb.GroupController do
   def show(conn, %{"id" => id}) do
     group = Music.get_group!(id)
     group = Musiq.Repo.preload(group, :listener)
-    IEx.pry
     user_id = get_session(conn, :user_id)
     if Enum.all?(group.listener, fn(x) -> x.id != user_id end) do
       Musiq.Accounts.associate_group(user_id, id)

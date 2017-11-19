@@ -5,10 +5,11 @@ defmodule MusiqWeb.GroupChannel do
 
   def join("group:" <> groupID, payload, socket) do
     queue = Queue.get(groupID)
-    IEx.pry
     socket = socket
     |> assign(:groupID, groupID)
-    {:ok, queue, socket}
+    state = create_state(queue)
+IEx.pry
+    {:ok, state, socket}
   end
 
   # Channels can be used in a request/response fashion
@@ -18,6 +19,19 @@ defmodule MusiqWeb.GroupChannel do
     Queue.update(groupID, payload)
     broadcast socket, "newQueue", payload
     {:noreply, socket}
+  end
+
+  def create_state(songs) do
+    %{cards: Enum.map(songs, fn(x) ->
+      info = %{
+      id: x.spotify_id,
+      title: x.title,
+      artist: x.artist
+    }
+    info
+    end)}
+
+
   end
 
 end

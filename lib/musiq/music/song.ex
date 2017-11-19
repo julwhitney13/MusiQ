@@ -5,8 +5,8 @@ defmodule Musiq.Music.Song do
 
 
   schema "songs" do
-    field :order, :integer
-    field :spotify_id, :integer
+    field :song_order, :integer
+    field :spotify_id, :string
     field :title, :string
     field :artist, :string
     belongs_to :group, Musiq.Music.Group
@@ -17,7 +17,7 @@ defmodule Musiq.Music.Song do
   @doc false
   def changeset(%Song{} = song, attrs) do
     song
-    |> cast(attrs, [:spotify_id, :order, :group_id, :title, :artist])
-    |> validate_required([:spotify_id, :order, :title, :artist])
+    |> cast(attrs, [:spotify_id, :song_order, :group_id, :title, :artist])
+    |> validate_required([:spotify_id, :song_order, :title, :artist])
   end
 end
