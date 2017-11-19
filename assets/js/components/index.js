@@ -13,6 +13,7 @@ export default class SortableSimple extends Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div>
                 <div>
@@ -25,7 +26,7 @@ export default class SortableSimple extends Component {
                     <h3>
                         Add a Song:
                     </h3>
-                    <TrackSearch />
+                    <TrackSearch state={this.state}/>
                 </div>
             </div>
         )

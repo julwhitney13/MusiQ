@@ -5,8 +5,6 @@ import axios from 'axios';
 export default class TrackSearch extends Component {
     constructor(props) {
         super(props)
-        console.log(this.state)
-        console.log(this.props.state)
         this.submitForm = this.submitForm.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.addSong = this.addSong.bind(this)
@@ -43,7 +41,7 @@ export default class TrackSearch extends Component {
     }
 
     addSong(track) {
-        console.log(track)
+        console.log(this.props.state)
     }
 
     render() {
