@@ -47,7 +47,7 @@ export default class TrackSearch extends Component {
     }
 
     render() {
-        const searchForm (
+        const searchForm = (
             <div>
             <form onSubmit={this.submitForm}>
                 <ControlLabel>Search by song</ControlLabel>
@@ -85,7 +85,7 @@ export default class TrackSearch extends Component {
             {this.state.showResults && searchResults}
             </div>
           )
-    const searchResults (
+    const searchResults = (
             <Panel collapsible defaultExpanded header="Search results">
               <ListGroup fill>
                 {this.state.response.map((track, i) => (
