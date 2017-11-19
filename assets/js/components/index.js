@@ -20,7 +20,7 @@ export default class SortableSimple extends Component {
                     <h3>
                         Our Queue:
                     </h3>
-                    <Container state={this.state}/>
+                    <Container state={this.state} channel={this.props.channel}/>
                 </div>
                 <div>
                     <h3>

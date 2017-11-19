@@ -20,22 +20,23 @@ export default class Container extends Component {
     moveCard(dragIndex, hoverIndex) {
         const { cards } = this.state
         const dragCard = cards[dragIndex]
-
         this.props.channel.push("cards", cards)
-            .receive("ok", state =>
+            .receive("ok", state => {
+                console.log("in set state" + state)
                 this.setState(
                     update(state, {
                         cards: {
                             $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
                         },
                     }),
-                )
+                )}
             )
     }
 
 
     render() {
         const { cards } = this.state
+        console.log("Re-rendering cards")
 
         return (
             <div style={style}>
