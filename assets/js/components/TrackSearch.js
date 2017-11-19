@@ -100,6 +100,6 @@ export default class TrackSearch extends Component {
     //         </Panel>
     //     )
 
-     return {searchForm};
+     return searchForm;
       }
 }
