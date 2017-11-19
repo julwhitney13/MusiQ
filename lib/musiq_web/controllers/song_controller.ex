@@ -16,7 +16,7 @@ defmodule MusiqWeb.SongController do
 
   def play(conn, params) do
     body = %{}
-    x= %{uris: ["spotify:album:1Je1IMUlBXcx1Fz0WE7oPT"]}
+    x= %{uris: ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}
     Spotify.Player.play(conn, x)
     send_resp(conn, :no_content, "")
   end
@@ -25,5 +25,17 @@ defmodule MusiqWeb.SongController do
     Spotify.Player.pause(conn, params)
     send_resp(conn, :no_content, "")
   end
+
+  def next(conn, params) do
+    Spotify.Player.seek(conn, %{position_ms: "0"})
+    send_resp(conn, :no_content, "")
+  end
+
+  def info(conn, params) do
+    i = Spotify.Player.info(conn, params)
+    IEx.pry
+  end
+
+
 
 end
