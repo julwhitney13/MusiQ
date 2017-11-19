@@ -15,13 +15,13 @@ export default class SortableSimple extends Component {
     render() {
         return (
             <div>
-                <div className="col-md-8">
+                <div>
                     <h3>
                         Our Queue:
                     </h3>
                     <Container state={this.state}/>
                 </div>
-                <div className="col-md-4">
+                <div>
                     <h3>
                         Add a Song:
                     </h3>
