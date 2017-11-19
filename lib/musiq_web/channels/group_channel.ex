@@ -17,14 +17,14 @@ defmodule MusiqWeb.GroupChannel do
     groupID = socket.assigns[:groupID]
     Queue.update(groupID, payload)
     broadcast socket, "newQueue", payload
-    {:noreply, socket}
+    {:reply, {:ok, %{}}, socket}
   end
 
   def handle_in("play", payload, socket) do
     groupID = socket.assigns[:groupID]
     Queue.update_state(groupID, true)
     broadcast socket, "play", %{}
-    {:noreply, socket}
+    {:reply, {:ok, %{}}, socket}
   end
 
   def handle_in("pause", payload, socket) do
@@ -32,13 +32,13 @@ defmodule MusiqWeb.GroupChannel do
     Queue.update_state(groupID, false)
 
     broadcast socket, "pause", %{}
-    {:noreply, socket}
+    {:reply, {:ok, %{}}, socket}
   end
 
   def handle_in("next", payload, socket) do
     groupID = socket.assigns[:groupID]
     broadcast socket, "next", %{}
-    {:noreply, socket}
+    {:reply, {:ok, %{}}, socket}
   end
 
   def create_state(songs) do
