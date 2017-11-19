@@ -1,7 +1,6 @@
 require IEx
 defmodule MusiqWeb.SongController do
   use MusiqWeb, :controller
-
   alias Musiq.Music
   alias Musiq.Music.Song
 
@@ -14,28 +13,31 @@ defmodule MusiqWeb.SongController do
   end
 
   def first(conn, params) do
-    group_id = 3
+    group_id = get_ID_from_conn(conn)
     group = Musiq.Music.get_group!(group_id)
+    songs = Musiq.Music.get_songs_by_group_id(group_id)
+    params = %{uris: songs}
     Spotify.Player.play(conn, params)
     if not group.state do
       Spotify.Player.pause(conn, params)
     end
     time = NaiveDateTime.diff(NaiveDateTime.utc_now, group.updated_at, :millisecond) + group.current_ms
-    Spotify.Player.seek(%{position_ms: time})
+    Spotify.Player.seek(conn, %{position_ms: time})
     send_resp(conn, :no_content, "")
   end
 
   def play(conn, params) do
-    query_param = 3
-    update_time(conn, query_param)
-    x= %{uris: ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}
-    Spotify.Player.play(conn, x)
+    group_id = get_ID_from_conn(conn)
+    update_time(conn, group_id)
+    songs = Musiq.Music.get_songs_by_group_id(group_id)
+    params = %{uris: songs}
+    Spotify.Player.play(conn, params)
     send_resp(conn, :no_content, "")
   end
 
   def pause(conn, params) do
-    query_param = 3
-    update_time(conn, query_param)
+    group_id = get_ID_from_conn(conn)
+    update_time(conn, group_id)
     Spotify.Player.pause(conn, params)
     send_resp(conn, :no_content, "")
   end

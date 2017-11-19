@@ -134,6 +134,13 @@ defmodule Musiq.Music do
   """
   def get_song!(id), do: Repo.get!(Song, id)
 
+  def get_songs_by_group_id(group_id) do
+    query = from s in Musiq.Music.Song,
+            where: s.group_id == ^group_id,
+            select: s.spotify_id
+    Musiq.Repo.all(query)
+  end
+
   @doc """
   Creates a song.
 

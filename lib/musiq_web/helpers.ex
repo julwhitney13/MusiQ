@@ -5,4 +5,11 @@ defmodule MusiqWeb.Helpers do
     tmpl = String.replace(to_string(tt), ~r/\..*$/, "")
     "#{modu}/#{tmpl}"
   end
+
+  def get_ID_from_conn(conn) do
+    tuple = List.keyfind(conn.req_headers, "referer", 0)
+    url = elem(tuple, 1)
+    split = String.split(url, "/")
+    String.to_integer(List.last(split))
+  end
 end
