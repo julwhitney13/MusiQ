@@ -42,7 +42,7 @@ export default class TrackSearch extends Component {
 
     }
 
-    addSong(track_id, track_title, track_artist) {
+    addSong(track_id, track_artist, track_title) {
         var track_object =  {
             title: track_title,
             id: track_id,
@@ -67,7 +67,7 @@ export default class TrackSearch extends Component {
                             <ListGroupItem key={track.id}>
                             {track.name} - {track.artists[0].name}
                                 <Button className="pull-right" bsSize="small" bsStyle="success" onClick={
-                                        () => {this.addSong(track.id, track.artists[0].name, track.name)}}>
+                                        () => {this.addSong(track.uri, track.artists[0].name, track.name)}}>
                                     Add Song <Glyphicon glyph="plus" />
                                 </Button>
                             </ListGroupItem>
