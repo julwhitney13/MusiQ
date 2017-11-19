@@ -39,7 +39,7 @@ defmodule Musiq.Accounts do
   def get_user!(id), do: Repo.get!(User, id)
 
   def get_user(id) do
-      user = Repo.get!(User, id)
+      user = Repo.get(User, id)
       |> Repo.preload([:created_groups, :following_groups])
   end
 
@@ -88,6 +88,12 @@ defmodule Musiq.Accounts do
   def associate_group(user_id, group_id) do
     changeset = Musiq.UserGroup.changeset(%Musiq.UserGroup{}, %{user_id: user_id, group_id: group_id})
     Repo.insert(changeset)
+  end
+
+  def delete_association(user_id, group_id) do
+    query = from ug in Musiq.UserGroup,
+            where: ug.user_id == ^user_id and ug.group_id == ^group_id
+    Repo.delete_all(query)
   end
 
   @doc """

@@ -1,5 +1,9 @@
 import React, {Component } from 'react';
+<<<<<<< HEAD
 import { form, FormGroup, FormControl, InputGroup, Glyphicon, ControlLabel, Button} from 'react-bootstrap';
+=======
+import { form, FormGroup, FormControl, InputGroup, Glyphicon, ControlLabel, Button, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
+>>>>>>> f4e8ad63947c6cfd2aa1c9ca2498a19a788148c3
 import axios from 'axios';
 
 export default class TrackSearch extends Component {
@@ -14,6 +18,10 @@ export default class TrackSearch extends Component {
           artistquery: '',
           albumsearch: false,
           albumquery: '',
+<<<<<<< HEAD
+=======
+          response: '',
+>>>>>>> f4e8ad63947c6cfd2aa1c9ca2498a19a788148c3
         }
     }
 
@@ -40,13 +48,14 @@ export default class TrackSearch extends Component {
         }
 
         axios.post('/api/v1/search', params)
-            .then(res => { console.log(JSON.stringify(res))
-        });
+            .then(res => {this.state.response = JSON.parse(res)})
+            .catch(er => {console.log(er)})
 
     }
 
     render() {
-        return (
+        const searchForm = (
+            <div>
             <form onSubmit={this.submitForm}>
                 <ControlLabel>Search by song</ControlLabel>
                 <FormGroup>
@@ -79,6 +88,23 @@ export default class TrackSearch extends Component {
                   Search
                 </Button>
             </form>
+
+            {this.state.showResults && searchResults}
+            </div>
           )
+    const searchResults = (
+            <Panel collapsible defaultExpanded header="Search results">
+              <ListGroup fill>
+              console.log(this.state.response)
+                {this.state.response.map((track, i) => (
+                    <ListGroupItem>
+                    {track.name} - {track.artists[0].name}
+                    </ListGroupItem>
+                ))}
+              </ListGroup>
+            </Panel>
+        )
+
+     return {searchForm};
       }
 }

@@ -1,10 +1,12 @@
+require IEx
 defmodule Musiq.Music.Queue do
   alias Musiq.Repo
   import Ecto.Query, only: [from: 2]
 
   def get(groupID) do
     group = Musiq.Music.get_group!(groupID)
-    songs = Repo.preload group, [songs: from(s in Song, order_by: s.order)]
+    IEx.pry
+    songs = Repo.preload group, songs: from(s in Musiq.Music.Song, order_by: s.order)
     songs
   end
 
