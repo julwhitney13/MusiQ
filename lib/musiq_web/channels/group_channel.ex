@@ -5,6 +5,7 @@ defmodule MusiqWeb.GroupChannel do
 
   def join("group:" <> groupID, payload, socket) do
     queue = Queue.get(groupID)
+    IEx.pry
     socket = socket
     |> assign(:groupID, groupID)
     {:ok, queue, socket}

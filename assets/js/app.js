@@ -42,8 +42,8 @@ function start() {
   let navbar = document.getElementById('navbar');
   ReactDOM.render(<MusiqNavbar />, navbar);
 
-  let tracksearchbar = document.getElementById('tracksearchbar');
-  ReactDOM.render(<TrackSearch />, tracksearchbar);
+  //let tracksearchbar = document.getElementById('tracksearchbar');
+  //ReactDOM.render(<TrackSearch />, tracksearchbar);
 
   if ($('body').data('page') != "GroupView/show"){
     return;

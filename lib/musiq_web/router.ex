@@ -29,6 +29,8 @@ defmodule MusiqWeb.Router do
     post "/search", SongController, :search
     get "/play", SongController, :play
     get "/pause", SongController, :pause
+    get "/info", SongController, :info
+    get "/next", SongController, :next
   end
   # Other scopes may use custom stacks.
   # scope "/api", MusiqWeb do

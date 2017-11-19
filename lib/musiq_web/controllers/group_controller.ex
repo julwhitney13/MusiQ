@@ -18,7 +18,6 @@ defmodule MusiqWeb.GroupController do
   def create(conn, %{"group" => group_params}) do
     id = get_session(conn, :user_id)
     group_params = Map.put(group_params, "creator_id", id)
-    IEx.pry
     case Music.create_group(group_params) do
       {:ok, group} ->
         conn
@@ -32,6 +31,7 @@ defmodule MusiqWeb.GroupController do
   def show(conn, %{"id" => id}) do
     group = Music.get_group!(id)
     group = Musiq.Repo.preload(group, :listener)
+    IEx.pry
     user_id = get_session(conn, :user_id)
     if Enum.all?(group.listener, fn(x) -> x.id != user_id end) do
       Musiq.Accounts.associate_group(user_id, id)

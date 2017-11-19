@@ -5,14 +5,18 @@ defmodule Musiq.Music.Queue do
 
   def get(groupID) do
     group = Musiq.Music.get_group!(groupID)
-    IEx.pry
-    songs = Repo.preload group, songs: from(s in Musiq.Music.Song, order_by: s.order)
-    songs
+    |>
+    Repo.preload songs: from(s in Musiq.Music.Song, order_by: s.order)
+    group.songs
+
   end
 
   def update(groupID, data) do
     group = Musiq.Music.get_group!(groupID)
-    Repo.preload group, [:songs] |> Repo.delete_all
+    |> Repo.preload [:songs]
+    Repo.delete_all(group.songs)
+    Ecto.Changeset.change group, current_ms: 0
+    Repo.update! group
     data
     |> Enum.with_index
     |> Enum.each(fn({song, index}) ->
