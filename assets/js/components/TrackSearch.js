@@ -7,6 +7,7 @@ export default class TrackSearch extends Component {
         super(props)
         this.submitForm = this.submitForm.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.addSong = this.addSong.bind(this)
         this.state = {
           songsearch: false,
           songquery: '',
@@ -14,7 +15,8 @@ export default class TrackSearch extends Component {
           artistquery: '',
           albumsearch: false,
           albumquery: '',
-          response: '',
+          response: [],
+          showResults: false,
         }
     }
 
@@ -41,15 +43,41 @@ export default class TrackSearch extends Component {
         }
 
         axios.post('/api/v1/search', params)
-            .then(res => {var r = JSON.parse(JSON.stringify(res))
-            console.log(r.data)
+            .then(res => {
+                var r = JSON.parse(JSON.stringify(res))
+                this.state.response = r.data
+                this.state.showResults = true
+                this.forceUpdate()
             })
             .catch(er => {console.log(er)})
 
     }
 
+    addSong(track) {
+        console.log(track)
+    }
+
     render() {
-        const searchForm = (
+        var searchResults
+
+        if (this.state.showResults) {
+            searchResults = (
+                    <Panel collapsible defaultExpanded bsStyle="success" header="Search results">
+                      <ListGroup fill>
+                        {this.state.response.map((track, i) => (
+                            <ListGroupItem key={track.id}>
+                            {track.name} - {track.artists[0].name}
+                                <Button className="pull-right" bsSize="small" bsStyle="success" onClick={() => {this.addSong(track)}}>
+                                    Add Song <Glyphicon glyph="plus" />
+                                </Button>
+                            </ListGroupItem>
+                        ))}
+                      </ListGroup>
+                    </Panel>
+                )
+        }
+
+        var searchForm = (
             <div>
             <form onSubmit={this.submitForm}>
                 <ControlLabel>Search by song</ControlLabel>
@@ -84,22 +112,9 @@ export default class TrackSearch extends Component {
                 </Button>
             </form>
 
-            {this.state.showResults && searchResults}
+            {searchResults}
             </div>
           )
-    const searchResults = (
-            <Panel collapsible defaultExpanded header="Search results">
-              <ListGroup fill>
-              console.log(this.state.response)
-                {this.state.response.map((track, i) => (
-                    <ListGroupItem>
-                    {track.name} - {track.artists[0].name}
-                    </ListGroupItem>
-                ))}
-              </ListGroup>
-            </Panel>
-        )
-
-     return searchForm;
-      }
+          return searchForm;
+    }
 }
