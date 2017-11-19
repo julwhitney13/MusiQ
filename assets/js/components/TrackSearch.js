@@ -52,7 +52,9 @@ export default class TrackSearch extends Component {
         this.forceUpdate()
 
         this.props.channel.push("cards", this.props.state)
-            .receive("ok", state => {console.log(state)})
+            .receive("ok", state => {console.log("Pushed cards" + state)})
+            .receive("error", resp => {console.log("Unable to push add song", resp)})
+
 
     }
 

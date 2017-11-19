@@ -16,7 +16,6 @@ export default class MusiqNavbar extends Component {
             </Navbar.Header>
             <Nav>
               <NavItem eventKey={1} href="/groups">Groups</NavItem>
-              <NavItem eventKey={2} href="#">Other Link</NavItem>
             </Nav>
           </Navbar>
           )
