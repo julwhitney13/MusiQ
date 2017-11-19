@@ -13,6 +13,7 @@ defmodule MusiqWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :auth?
   end
 
   scope "/", MusiqWeb do
@@ -27,9 +28,9 @@ defmodule MusiqWeb.Router do
   scope "/api/v1", MusiqWeb do
     pipe_through :api
     post "/search", SongController, :search
-    post "/play", SongController, :play
+    get "/play", SongController, :play
     post "/first", SongController, :first
-    post "/pause", SongController, :pause
+    get "/pause", SongController, :pause
     post "/next", SongController, :next
   end
   # Other scopes may use custom stacks.

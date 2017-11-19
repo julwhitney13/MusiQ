@@ -1,3 +1,4 @@
+require IEx
 defmodule MusiqWeb.Plugs do
   import Plug.Conn
 
@@ -14,6 +15,13 @@ defmodule MusiqWeb.Plugs do
       assign(conn, :current_user, nil)
     end
 
+  end
+
+  def auth?(conn, _opts) do
+    case Spotify.Authentication.refresh(conn) do
+      {:ok, conn} -> conn
+      {:error, reason} -> Phoenix.Controller.redirect conn, external: Spotify.Authorization.url
+    end
   end
 
 end

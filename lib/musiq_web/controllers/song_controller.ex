@@ -39,6 +39,7 @@ defmodule MusiqWeb.SongController do
     group_id = get_ID_from_conn(conn)
     update_time(conn, group_id)
     Spotify.Player.pause(conn, params)
+    IEx.pry
     send_resp(conn, :no_content, "")
   end
 
