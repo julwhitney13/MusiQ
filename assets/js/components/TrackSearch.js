@@ -82,7 +82,7 @@ export default class TrackSearch extends Component {
                 </Button>
             </form>
 
-            {this.state.showResults && searchResults}
+            // {this.state.showResults && searchResults}
             </div>
           )
     const searchResults = (
