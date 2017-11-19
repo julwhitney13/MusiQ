@@ -13,6 +13,8 @@ const style = {
 export default class Container extends Component {
     constructor(props) {
         super(props)
+        console.log(props)
+        console.log(this.props.state)
         this.moveCard = this.moveCard.bind(this)
         this.state = this.props.state
     }
