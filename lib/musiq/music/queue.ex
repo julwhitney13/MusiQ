@@ -11,13 +11,13 @@ defmodule Musiq.Music.Queue do
 
   end
 
-  def update(groupID, data) do
+  def update(groupID, songs, state) do
     group = Musiq.Music.get_group!(groupID)
     |> Repo.preload [:songs]
     Repo.delete_all(group.songs)
-    Ecto.Changeset.change group, current_ms: 0
-    Repo.update! group
-    data
+    change = Ecto.Changeset.change group, current_ms: 0
+    Repo.update! change
+    songs
     |> Enum.with_index
     |> Enum.each(fn({song, index}) ->
       object = %{song_order: index, spotify_id: song.id,
@@ -25,5 +25,12 @@ defmodule Musiq.Music.Queue do
       Musiq.Music.create_song(object)
     end)
   end
+
+  def update_state(groupID, state) do
+    group = Musiq.Music.get_group!(groupID)
+    change = Ecto.Changeset.change group, state: state
+    Repo.update! change
+  end
+
 
 end

@@ -8,7 +8,6 @@ defmodule MusiqWeb.GroupChannel do
     socket = socket
     |> assign(:groupID, groupID)
     state = create_state(queue)
-IEx.pry
     {:ok, state, socket}
   end
 
@@ -18,6 +17,27 @@ IEx.pry
     groupID = socket.assigns[:groupID]
     Queue.update(groupID, payload)
     broadcast socket, "newQueue", payload
+    {:noreply, socket}
+  end
+
+  def handle_in("play", payload, socket) do
+    groupID = socket.assigns[:groupID]
+    Queue.update_state(groupID, true)
+    broadcast socket, "play", %{}
+    {:noreply, socket}
+  end
+
+  def handle_in("pause", payload, socket) do
+    groupID = socket.assigns[:groupID]
+    Queue.update_state(groupID, false)
+
+    broadcast socket, "pause", %{}
+    {:noreply, socket}
+  end
+
+  def handle_in("next", payload, socket) do
+    groupID = socket.assigns[:groupID]
+    broadcast socket, "next", %{}
     {:noreply, socket}
   end
 

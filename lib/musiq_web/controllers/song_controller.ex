@@ -9,13 +9,11 @@ defmodule MusiqWeb.SongController do
 
   def search(conn, params) do
     {:ok, %{items: items}} = Spotify.Search.query(conn, List.first(params["_json"]))
-    IEx.pry
     x = Poison.encode!(items) |> Poison.decode!
     json conn, x
   end
 
   def play(conn, params) do
-    body = %{}
     x= %{uris: ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh", "spotify:track:1301WleyT98MSxVHPZCA6M"]}
     Spotify.Player.play(conn, x)
     send_resp(conn, :no_content, "")

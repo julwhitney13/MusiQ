@@ -7,8 +7,6 @@ defmodule MusiqWeb.GroupController do
 
   def index(conn, _params) do
     groups = Music.list_groups()
-    IEx.pry
-    
     render(conn, "index.html", groups: groups)
   end
 
