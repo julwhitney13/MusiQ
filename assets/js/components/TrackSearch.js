@@ -1,9 +1,5 @@
 import React, {Component } from 'react';
-<<<<<<< HEAD
-import { form, FormGroup, FormControl, InputGroup, Glyphicon, ControlLabel, Button} from 'react-bootstrap';
-=======
 import { form, FormGroup, FormControl, InputGroup, Glyphicon, ControlLabel, Button, Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
->>>>>>> f4e8ad63947c6cfd2aa1c9ca2498a19a788148c3
 import axios from 'axios';
 
 export default class TrackSearch extends Component {
@@ -18,10 +14,7 @@ export default class TrackSearch extends Component {
           artistquery: '',
           albumsearch: false,
           albumquery: '',
-<<<<<<< HEAD
-=======
           response: '',
->>>>>>> f4e8ad63947c6cfd2aa1c9ca2498a19a788148c3
         }
     }
 
