@@ -2,6 +2,11 @@
 <p class="text-center"><%= @group.description %></p>
 <p class="text-center">Created by @<%= @group.creator.spotify_id %></p>
 
+<div class="text-center" >
+<span><%= link "Play", to: song_path(@conn, :play, %{}), class: "btn btn-primary" %></span>
+<span><%= link "Pause", to: song_path(@conn, :pause, %{}), class: "btn btn btn-outline-primary" %></span>
+<span><%= link "Next", to: song_path(@conn, :next, %{}), class: "btn btn-primary" %></span>
+</div>
 <div id="groupshow">
     <p>Loading queue...</p>
 </div>
