@@ -5,8 +5,7 @@ defmodule Musiq.Music.Queue do
 
   def get(groupID) do
     group = Musiq.Music.get_group!(groupID)
-    |>
-    Repo.preload songs: from(s in Musiq.Music.Song, order_by: s.song_order)
+    |> Repo.preload songs: from(s in Musiq.Music.Song, order_by: s.song_order)
     group.songs
 
   end
