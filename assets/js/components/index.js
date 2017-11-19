@@ -26,7 +26,7 @@ export default class SortableSimple extends Component {
                     <h3>
                         Add a Song:
                     </h3>
-                    <TrackSearch state={this.state}/>
+                    <TrackSearch state={this.state} channel={this.props.channel}/>
                 </div>
             </div>
         )
