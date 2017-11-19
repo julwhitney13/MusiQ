@@ -1,31 +1,18 @@
-<div id="tracksearchbar">
-    <p>Add a song</p>
-</div>
+<h3><%= @group.name %></h3>
+<p><%= @group.description %></p>
+<p>Created by @<%= @group.creator %></p>
+
 <div id="groupshow">
     <p>Loading queue...</p>
 </div>
 
-<h2>Show Group</h2>
-
-<ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @group.name %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @group.description %>
-  </li>
-
-</ul>
-
 <%= if @group_id do %>
 <script>
-  window.group_id = "<%= @group_id %>"
-  </script>
-  <% end %>
+    window.group_id = "<%= @group_id %>"
+</script>
+<% end %>
 
-<span><%= link "Edit", to: group_path(@conn, :edit, @group) %></span>
-<span><%= link "Back", to: group_path(@conn, :index) %></span>
+<%= if @group.creator == @group.listener %>
+    <span><%= link "Edit", to: group_path(@conn, :edit, @group) %></span>
+    <span><%= link "Back", to: group_path(@conn, :index) %></span>
+<% end %>

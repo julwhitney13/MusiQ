@@ -1,8 +1,5 @@
 <div class="container my-5">
     <div class="row">
-        <div id="tracksearchbar">
-            <p>Add a song</p>
-        </div>
         <span><%= link "New Group", to: group_path(@conn, :new) %></span>
     </div>
     <div class="row">
