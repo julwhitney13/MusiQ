@@ -12,7 +12,7 @@
 </script>
 <% end %>
 
-<%= if @group.creator == @group.listener %>
+<%= if @group.creator == @group.listener do %>
     <span><%= link "Edit", to: group_path(@conn, :edit, @group) %></span>
     <span><%= link "Back", to: group_path(@conn, :index) %></span>
 <% end %>
