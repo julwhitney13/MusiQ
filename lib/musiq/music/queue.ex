@@ -11,7 +11,7 @@ defmodule Musiq.Music.Queue do
 
   end
 
-  def update(groupID, songs, state) do
+  def update(groupID, songs) do
     group = Musiq.Music.get_group!(groupID)
     |> Repo.preload [:songs]
     Repo.delete_all(group.songs)
