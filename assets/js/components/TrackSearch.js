@@ -41,9 +41,8 @@ export default class TrackSearch extends Component {
         }
 
         axios.post('/api/v1/search', params)
-            .then(res => {this.state.response = JSON.stringify(res)
-                console.log(JSON.stringify(res))
-                console.log(JSON.parse(JSON.stringify(res)))
+            .then(res => {r = JSON.parse(JSON.stringify(res))
+            console.log(r.data)
             })
             .catch(er => {console.log(er)})
 
