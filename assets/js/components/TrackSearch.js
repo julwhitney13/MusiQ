@@ -43,7 +43,6 @@ export default class TrackSearch extends Component {
         axios.post('/api/v1/search', params)
             .then(res => {this.state.response = JSON.parse(res)})
             .catch(er => {console.log(er)})
-        });
 
     }
 
