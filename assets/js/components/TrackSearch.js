@@ -40,11 +40,11 @@ export default class TrackSearch extends Component {
 
     }
 
-    addSong(track) {
+    addSong(track_id, track_title, track_artist) {
         var track_object =  {
-            artist: {track.artists[0].name},
-            id: {track.id},
-            title: {track.name},
+            artist: track_artist,
+            id: track_id,
+            title: track_title,
         }
         this.props.state.cards.push(track_object)
         this.forceUpdate()
@@ -60,7 +60,8 @@ export default class TrackSearch extends Component {
                         {this.state.response.map((track, i) => (
                             <ListGroupItem key={track.id}>
                             {track.name} - {track.artists[0].name}
-                                <Button className="pull-right" bsSize="small" bsStyle="success" onClick={() => {this.addSong(track)}}>
+                                <Button className="pull-right" bsSize="small" bsStyle="success" onClick={
+                                        () => {this.addSong(track.id, track.artists[0].name, track.name)}}>
                                     Add Song <Glyphicon glyph="plus" />
                                 </Button>
                             </ListGroupItem>
