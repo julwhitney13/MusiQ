@@ -41,7 +41,13 @@ export default class TrackSearch extends Component {
     }
 
     addSong(track) {
-        console.log(this.props.state)
+        var track_object =  {
+            artist: {track.artists[0].name},
+            id: {track.id},
+            title: {track.name},
+        }
+        this.props.state.cards.push(track_object)
+        this.forceUpdate()
     }
 
     render() {
