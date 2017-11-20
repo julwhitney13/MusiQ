@@ -55,7 +55,7 @@ export default class TrackSearch extends Component {
                 console.log("Pushed cards" + state)
             })
             .receive("error", resp => {console.log("Unable to push add song", resp)})
-        this.forceUpdate()
+        this.setState(this.props.state)
 
     }
 
