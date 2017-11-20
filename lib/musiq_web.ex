@@ -23,6 +23,7 @@ defmodule MusiqWeb do
       import Plug.Conn
       import MusiqWeb.Router.Helpers
       import MusiqWeb.Gettext
+      import MusiqWeb.Helpers
     end
   end
 
@@ -40,6 +41,7 @@ defmodule MusiqWeb do
       import MusiqWeb.Router.Helpers
       import MusiqWeb.ErrorHelpers
       import MusiqWeb.Gettext
+      import MusiqWeb.Helpers
     end
   end
 
@@ -55,6 +57,7 @@ defmodule MusiqWeb do
     quote do
       use Phoenix.Channel
       import MusiqWeb.Gettext
+      import MusiqWeb.Helpers
     end
   end
 

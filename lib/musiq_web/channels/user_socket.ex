@@ -3,7 +3,7 @@ defmodule MusiqWeb.UserSocket do
 
   ## Channels
   # channel "room:*", MusiqWeb.RoomChannel
-
+  channel "group:*", MusiqWeb.GroupChannel
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
   # transport :longpoll, Phoenix.Transports.LongPoll

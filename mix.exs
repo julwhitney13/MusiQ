@@ -20,7 +20,7 @@ defmodule Musiq.Mixfile do
   def application do
     [
       mod: {Musiq.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :spotify_ex]
     ]
   end
 
@@ -40,7 +40,10 @@ defmodule Musiq.Mixfile do
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:spotify_ex, git: "https://github.com/lohikansun/spotify_ex.git"},
+      {:poison, "~> 3.1"},
+      {:httpoison, "~> 0.13.0"}
     ]
   end
 

@@ -1,0 +1,19 @@
+<h2 class="text-center"><%= @group.name %></h3>
+<p class="text-center"><%= @group.description %></p>
+<p class="text-center">Created by <%= @group.creator.username %></p>
+
+<div id="groupshow">
+    <p>Loading queue...</p>
+</div>
+
+<%= if @group_id do %>
+<script>
+    window.group_id = "<%= @group_id %>"
+</script>
+<% end %>
+
+<div class="row text-center">
+    <%= if @group.creator.id == @current_user.id do %>
+        <span><%= link "Edit this group", to: group_path(@conn, :edit, @group), class: "btn btn-info" %></span>
+    <% end %>
+</div>
