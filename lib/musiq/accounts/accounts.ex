@@ -48,6 +48,12 @@ defmodule Musiq.Accounts do
       user.created_groups
   end
 
+  def get_other_groups(id) do
+    user = get_user(id)
+    all_groups = Musiq.Music.list_groups
+    Enum.filter(all_groups, fn(x) -> !Enum.any?(user.following_groups, fn(y) -> y.id == x.id end) end)
+  end
+
   def get_user_following_groups(id) do
       user = get_user(id)
       user.following_groups

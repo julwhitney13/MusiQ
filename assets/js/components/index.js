@@ -42,6 +42,11 @@ export default class SortableSimple extends Component {
             this.setState({
                 cards: this.state.cards
             })
+            this.props.channel.push("cards", this.state)
+                .receive("ok", state => {
+                    console.log("in set state" + state)}
+                )
+                .receive("error", resp => {console.log("Unable to push change song", resp)})
             console.log(this.state.cards)
         }
     }
