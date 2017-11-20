@@ -86,6 +86,7 @@ export default class Card extends Component {
         title: PropTypes.string.isRequired,
         artist: PropTypes.string.isRequired,
         moveCard: PropTypes.func.isRequired,
+        removeCard: PropTypes.func.isRequired,
     }
 
     render() {
@@ -99,7 +100,14 @@ export default class Card extends Component {
         const opacity = isDragging ? 0 : 1
 
         return connectDragSource(
-            connectDropTarget(<div style={{ ...style, opacity }}>{title} - {artist}</div>),
+            connectDropTarget(
+                <div style={{ ...style, opacity }}>
+                    {title} - {artist}
+                    <Button bsStyle="danger" className="pull-right" bsSize="xsmall"
+                        onClick={() => {props.removeCard(index)}}>
+                        Remove
+                    </Button>
+                </div>),
         )
     }
 }

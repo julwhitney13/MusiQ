@@ -16,6 +16,7 @@ export default class Container extends Component {
         console.log(props)
         console.log(this.props.state)
         this.moveCard = this.moveCard.bind(this)
+        this.removeCard = this.removeCard.bind(this)
         this.state = this.props.state
     }
 
@@ -36,7 +37,13 @@ export default class Container extends Component {
             .receive("error", resp => {console.log("Unable to push change song", resp)})
     }
 
-
+    removeCard(index) {
+        this.state.cards.pop(index)
+        this.setState({
+            cards: this.state.cards
+        })
+    }
+    
     render() {
         const { cards } = this.state
         console.log("Re-rendering cards")
