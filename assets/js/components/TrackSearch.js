@@ -14,7 +14,7 @@ export default class TrackSearch extends Component {
           songquery: '',
           response: [],
           showResults: false,
-          queue: {this.props.state}
+          queue: this.props.state,
         }
     }
 
