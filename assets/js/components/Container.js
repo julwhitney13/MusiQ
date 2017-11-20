@@ -61,6 +61,7 @@ export default class Container extends Component {
                         title={card.title}
                         artist={card.artist}
                         moveCard={this.moveCard}
+                        removeCard={this.removeCard}
                     />
                 ))}
             </div>
