@@ -38,6 +38,7 @@ export default class Container extends Component {
     }
 
     removeCard(index) {
+        console.log("index", index)
         this.state.cards.pop(index)
         this.setState({
             cards: this.state.cards
