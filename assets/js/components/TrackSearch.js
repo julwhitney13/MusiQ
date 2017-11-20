@@ -14,6 +14,7 @@ export default class TrackSearch extends Component {
           songquery: '',
           response: [],
           showResults: false,
+          queue: {this.props.state}
         }
     }
 
@@ -48,14 +49,14 @@ export default class TrackSearch extends Component {
             id: track_id,
             artist: track_artist,
         }
-        this.props.state.cards.push(track_object)
+        this.state.queue.cards.push(track_object)
 
-        this.props.channel.push("cards", this.props.state)
+        this.props.channel.push("cards", this.state.queue)
             .receive("ok", state => {
                 console.log("Pushed cards" + state)
             })
             .receive("error", resp => {console.log("Unable to push add song", resp)})
-        this.setState(this.props.state)
+        this.setState(this.state)
 
     }
 
