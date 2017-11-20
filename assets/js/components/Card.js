@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import ItemTypes from './ItemTypes'
+import { Button } from 'react-bootstrap';
 
 const style = {
     border: '1px solid gray',
