@@ -45,6 +45,7 @@ export default class Container extends Component {
         this.props.channel.push("cards", this.state)
             .receive("ok", state => {console.log("Deleted song")})
             .receive("error", resp => {console.log("Unable to delete song", resp)})
+        this.forceUpdate()
     }
 
     render() {

@@ -108,7 +108,7 @@ export default class Card extends Component {
                     {title} - {artist}
                     <Button bsStyle="danger" className="pull-right" bsSize="xsmall"
                         onClick={() => {this.props.removeCard(index)}}>
-                        Remove
+                        -
                     </Button>
                 </div>),
         )
