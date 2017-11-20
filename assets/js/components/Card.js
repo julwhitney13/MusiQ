@@ -94,9 +94,11 @@ export default class Card extends Component {
         const {
             title,
             artist,
+            index,
             isDragging,
             connectDragSource,
             connectDropTarget,
+            removeCard,
         } = this.props
         const opacity = isDragging ? 0 : 1
 
@@ -105,7 +107,7 @@ export default class Card extends Component {
                 <div style={{ ...style, opacity }}>
                     {title} - {artist}
                     <Button bsStyle="danger" className="pull-right" bsSize="xsmall"
-                        onClick={() => {props.removeCard(index)}}>
+                        onClick={() => {removeCard(index)}}>
                         Remove
                     </Button>
                 </div>),

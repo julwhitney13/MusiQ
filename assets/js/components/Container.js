@@ -42,8 +42,11 @@ export default class Container extends Component {
         this.setState({
             cards: this.state.cards
         })
+        this.props.channel.push("cards", this.state)
+            .receive("ok", state => {console.log("Deleted song")})
+            .receive("error", resp => {console.log("Unable to delete song", resp)})
     }
-    
+
     render() {
         const { cards } = this.state
         console.log("Re-rendering cards")
