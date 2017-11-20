@@ -107,7 +107,7 @@ export default class Card extends Component {
                 <div style={{ ...style, opacity }}>
                     {title} - {artist}
                     <Button bsStyle="danger" className="pull-right" bsSize="xsmall"
-                        onClick={() => {removeCard(index)}}>
+                        onClick={() => {this.props.removeCard(index)}}>
                         Remove
                     </Button>
                 </div>),
