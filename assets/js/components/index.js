@@ -19,9 +19,6 @@ export default class SortableSimple extends Component {
 
     update_queue(new_queue) {
         this.setState(new_queue)
-        axios.post("/api/v1/first", {})
-            .then(res => {console.log("Updated queue successfully", res)})
-            .catch(er => {console.log("Error updating queue", er)})
     }
 
     play_song() {

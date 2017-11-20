@@ -8,12 +8,13 @@ defmodule MusiqWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :auth?
     plug :fetch_user
   end
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug :auth?
+    plug :refresh
   end
 
   scope "/", MusiqWeb do
@@ -28,9 +29,9 @@ defmodule MusiqWeb.Router do
   scope "/api/v1", MusiqWeb do
     pipe_through :api
     post "/search", SongController, :search
-    post "/play", SongController, :play
+    get "/play", SongController, :play
     post "/first", SongController, :first
-    post "/pause", SongController, :pause
+    get "/pause", SongController, :pause
     post "/next", SongController, :next
   end
   # Other scopes may use custom stacks.

@@ -22,16 +22,16 @@ export default class Container extends Component {
     moveCard(dragIndex, hoverIndex) {
         const { cards } = this.state
         const dragCard = cards[dragIndex]
+        this.setState(
+            update(this.state, {
+                cards: {
+                    $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
+                },
+            }),
+        )
         this.props.channel.push("cards", this.state)
             .receive("ok", state => {
-                console.log("in set state" + state)
-                this.setState(
-                    update(this.state, {
-                        cards: {
-                            $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
-                        },
-                    }),
-                )}
+                console.log("in set state" + state)}
             )
             .receive("error", resp => {console.log("Unable to push change song", resp)})
     }

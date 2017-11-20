@@ -17,7 +17,7 @@ defmodule MusiqWeb.GroupChannel do
     groupID = socket.assigns[:groupID]
     Queue.update(groupID, payload)
     broadcast socket, "newQueue", payload
-    {:reply, {:ok, %{}}, socket}
+    {:reply, {:ok, payload}, socket}
   end
 
   def handle_in("play", payload, socket) do

@@ -17,7 +17,15 @@ defmodule MusiqWeb.Plugs do
 
   end
 
-  def auth?(conn, _opts) do
+  def auth?(conn, _default) do
+    unless Spotify.Authentication.authenticated?(conn) do
+      Phoenix.Controller.redirect conn, external: Spotify.Authorization.url
+    else
+      conn
+    end
+  end
+
+  def refresh(conn, _opts) do
     case Spotify.Authentication.refresh(conn) do
       {:ok, conn} -> conn
       {:error, reason} -> Phoenix.Controller.redirect conn, external: Spotify.Authorization.url

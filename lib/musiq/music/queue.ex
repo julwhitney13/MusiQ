@@ -11,6 +11,10 @@ defmodule Musiq.Music.Queue do
   end
 
   def update(groupID, songs) do
+    if List.first(songs["cards"])["artist"] == "ZZ TOP" do
+      IEx.pry
+
+    end
     group = Musiq.Music.get_group!(groupID)
     |> Repo.preload [:songs]
     query = from s in Musiq.Music.Song,
@@ -18,8 +22,6 @@ defmodule Musiq.Music.Queue do
     Repo.delete_all(query)
     change = Ecto.Changeset.change group, current_ms: 0
     Repo.update! change
-    IEx.pry
-
     songs["cards"]
     |> Enum.with_index
     |> Enum.each(fn({song, index}) ->

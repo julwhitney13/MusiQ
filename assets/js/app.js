@@ -26,6 +26,8 @@ import socket from "./socket"
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import axios from 'axios';
+
 import SortableSimple from './components/index';
 import MusiqNavbar from './components/Navbar';
 import TrackSearch from './components/TrackSearch';
@@ -47,9 +49,12 @@ function start() {
     group.join()
         .receive("ok", state0 => {
             console.log("Joined successfully", state0);
+            axios.post("/api/v1/first", {})
+                .then(res => {console.log("Updated queue successfully", res)})
+                .catch(er => {console.log("Error updating queue", er)})
             ready(group, state0);
         })
-        .receive("error", resp => {console.log("Unable to join", resp);});
+        .receive("error", res => {console.log("Unable to join", res);});
 }
 
 $(start);
