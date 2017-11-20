@@ -39,7 +39,7 @@ export default class Container extends Component {
 
     removeCard(index) {
         console.log("index", index)
-        this.state.cards.pop(index)
+        this.state.cards.splice(index, 1)
         this.setState({
             cards: this.state.cards
         })
