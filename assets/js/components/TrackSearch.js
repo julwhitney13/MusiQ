@@ -49,10 +49,12 @@ export default class TrackSearch extends Component {
             artist: track_artist,
         }
         this.props.state.cards.push(track_object)
-        this.forceUpdate()
 
         this.props.channel.push("cards", this.props.state)
-            .receive("ok", state => {console.log("Pushed cards" + state)})
+            .receive("ok", state => {
+                console.log("Pushed cards" + state)
+                this.forceUpdate()
+            })
             .receive("error", resp => {console.log("Unable to push add song", resp)})
 
 
@@ -70,7 +72,7 @@ export default class TrackSearch extends Component {
                             {track.name} - {track.artists[0].name}
                                 <Button className="pull-right" bsSize="small" bsStyle="success" onClick={
                                         () => {this.addSong(track.uri, track.artists[0].name, track.name)}}>
-                                    Add Song <Glyphicon glyph="plus" />
+                                    Add Song +
                                 </Button>
                             </ListGroupItem>
                         ))}

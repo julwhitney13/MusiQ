@@ -37,7 +37,13 @@ export default class SortableSimple extends Component {
         axios.post("/api/v1/next", {})
             .then(res => {console.log("Went to next song successfully", res)})
             .catch(er => {console.log("Error going to next song", er)})
-        this.setState({cards: this.state.cards.pop()})
+        if (this.state.cards.length > 0) {
+            this.state.cards.shift()
+            this.setState({
+                cards: this.state.cards
+            })
+            console.log(this.state.cards)
+        }
     }
 
     render() {
