@@ -9,6 +9,8 @@
 
     <title>Hello Musiq!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
   </head>
 
   <body  data-page="<%= page_name(@view_module, @view_template) %>">
